@@ -1,0 +1,34 @@
+{
+  "items": [
+    {
+      "id": "gh-1",
+      "seq": 1,
+      "author": "alice",
+      "ts": "2026-01-10",
+      "url": "/repos/acme/orders/issues/1",
+      "thread_id": "gh-thread-1",
+      "text": "We decided to use PostgreSQL for the orders service database.",
+      "acl": ["engineering"]
+    },
+    {
+      "id": "gh-2",
+      "seq": 2,
+      "author": "bob",
+      "ts": "2026-03-02",
+      "url": "/repos/acme/orders/pull/2",
+      "thread_id": "gh-thread-2",
+      "text": "We agreed to stop deploying the orders service on Fridays.",
+      "acl": ["engineering"]
+    },
+    {
+      "id": "gh-3",
+      "seq": 3,
+      "author": "carol",
+      "ts": "2026-03-03",
+      "url": "/repos/acme/orders/issues/3",
+      "thread_id": "gh-thread-3",
+      "text": "Lunch tomorrow at noon for anyone interested.",
+      "acl": ["engineering"]
+    }
+  ]
+}

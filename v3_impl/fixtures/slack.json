@@ -1,0 +1,36 @@
+{
+  "items": [
+    {
+      "id": "sl-1",
+      "seq": 1,
+      "author": "dana",
+      "ts": "2026-01-11",
+      "url": "/archives/eng/2026-01-11",
+      "thread_id": "sl-thread-1",
+      "text": "We decided to use PostgreSQL for the orders service database.",
+      "acl": ["engineering"],
+      "reactions": ["thumbsup"]
+    },
+    {
+      "id": "sl-2",
+      "seq": 2,
+      "author": "erin",
+      "ts": "2026-03-02",
+      "url": "/archives/leadership/2026-03-02",
+      "thread_id": "sl-thread-2",
+      "text": "Decision: API rate limit is 300 requests per minute.",
+      "acl": ["leadership"]
+    },
+    {
+      "id": "sl-3",
+      "seq": 3,
+      "author": "frank",
+      "ts": "2026-03-02",
+      "url": "/archives/leadership/2026-03-02/reply",
+      "thread_id": "sl-thread-2",
+      "text": "Agreed, let's go with that limit for free users.",
+      "acl": ["leadership"],
+      "reactions": ["thumbsup"]
+    }
+  ]
+}
