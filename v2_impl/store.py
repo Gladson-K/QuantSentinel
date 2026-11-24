@@ -4,7 +4,7 @@ import json
 import os
 import sqlite3
 
-from schemas import Decision, Conflict
+from schemas import Conflict, Decision
 
 SCHEMA_VERSION = "2"
 
@@ -81,7 +81,7 @@ class Store:
         connection.close()
 
     def add_label(self, decision_id, verdict, reviewer="local"):
-        ts = datetime.datetime.now(datetime.timezone.utc).isoformat()
+        ts = datetime.datetime.now(datetime.UTC).isoformat()
         connection = self._connect()
         connection.execute(
             "INSERT INTO labels(decision_id,verdict,reviewer,ts) VALUES(?,?,?,?)",
@@ -158,7 +158,7 @@ class Store:
         return [(row[0], row[1], row[2], row[3], row[4]) for row in rows]
 
     def add_merge(self, merge_id, canonical, duplicate, reason):
-        ts = datetime.datetime.now(datetime.timezone.utc).isoformat()
+        ts = datetime.datetime.now(datetime.UTC).isoformat()
         connection = self._connect()
         connection.execute(
             "INSERT OR REPLACE INTO merges VALUES(?,?,?,?,?,0)", (merge_id, canonical, duplicate, reason, ts)
