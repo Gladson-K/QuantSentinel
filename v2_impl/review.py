@@ -37,4 +37,4 @@ class ReviewQueue:
 
 
 def now_utc():
-    return datetime.datetime.now(datetime.timezone.utc).isoformat()
+    return datetime.datetime.now(datetime.UTC).isoformat()

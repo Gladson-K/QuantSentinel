@@ -4,7 +4,6 @@ import os
 from urllib.parse import urlparse
 
 import decisiongraph as dg
-
 from schemas import Decision, validate_evidence
 
 LOOPBACK_HOSTS = {"127.0.0.1", "localhost", "::1"}
@@ -134,7 +133,7 @@ class HybridExtractor:
             if self.parser is not None:
                 try:
                     decisions = self.parser.extract(chunk, source, date)
-                except Exception:
+                except (OSError, ValueError, KeyError, TypeError, RuntimeError):
                     decisions = candidates
             validated = []
             for decision in decisions:

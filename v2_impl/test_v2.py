@@ -10,7 +10,15 @@ from nli import HeuristicNLI, OnnxNLI
 from review import ReviewQueue
 from schemas import Decision, validate_evidence
 from store import Store
-from vectors import HashingEmbedder, IVFIndex, cosine, dequantize_int8, pack_int8, quantize_int8, unpack_int8
+from vectors import (
+    HashingEmbedder,
+    IVFIndex,
+    cosine,
+    dequantize_int8,
+    pack_int8,
+    quantize_int8,
+    unpack_int8,
+)
 
 
 class V2Tests(unittest.TestCase):
