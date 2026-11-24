@@ -1,0 +1,28 @@
+{
+  "cases": [
+    {
+      "text": "We decided to use PostgreSQL for the orders store. Lunch is at noon.",
+      "source": "golden-1.md",
+      "date": "2026-01-10",
+      "expected": ["We decided to use PostgreSQL for the orders store."]
+    },
+    {
+      "text": "The weather is nice today. Seven people attended the meeting.",
+      "source": "golden-2.md",
+      "date": "2026-01-11",
+      "expected": []
+    },
+    {
+      "text": "Decision: API rate limit is 100 requests per minute.",
+      "source": "golden-3.md",
+      "date": "2026-01-12",
+      "expected": ["Decision: API rate limit is 100 requests per minute."]
+    },
+    {
+      "text": "We agreed to stop deploying on Fridays.",
+      "source": "golden-4.md",
+      "date": "2026-01-13",
+      "expected": ["We agreed to stop deploying on Fridays."]
+    }
+  ]
+}
