@@ -15,3 +15,13 @@ A named human reviews AI output before merge. Tier A deployments additionally re
 ## Data
 
 Follow `../_governance/DATA-MAP.md`. Never send secrets, personal data, health recordings, or restricted datasets to models, hosted APIs, web tools, issues, or shared sessions.
+
+## Change disclosure record
+
+| Field | Value |
+| --- | --- |
+| Tools/models used | opencode (opencode/big-pickle), Docker 29.1.3 with cached `python:3.11-slim` |
+| What was delegated | Git bootstrap, V1-V3 implementation, Docker test harness, V4-V10 design draft |
+| Human verification | Pending: project owner must review diff and rerun documented tests before merge or release |
+| Data used | Existing local specification markdown and the two local sample decision notes; synthetic fixtures only; no restricted data sent externally |
+| Tier/gate | Tier B; normal review, tests, dependency check and security/privacy review at release; no release performed |
