@@ -26,11 +26,18 @@ Not a note-taker and not a wiki. The unit of value is the **decision** (what, wh
 | V10.md | Ecosystem | Open Decision Record standard, plugins, decision steward agent |
 
 ## Run V1
+Implementation lives in `v1_impl/`. Docker is the supported test environment.
+
 ```bash
-cd v1_impl
-python decisiongraph.py ingest sample_notes
-python decisiongraph.py conflicts
-python decisiongraph.py search "database"
-python decisiongraph.py report --out report.md
-python test_decisiongraph.py
+docker compose run --rm test
+```
+
+Local equivalent commands (stdlib only, Python 3.11+):
+
+```bash
+PYTHONPATH=v1_impl python v1_impl/decisiongraph.py ingest v1_impl/sample_notes
+PYTHONPATH=v1_impl python v1_impl/decisiongraph.py conflicts
+PYTHONPATH=v1_impl python v1_impl/decisiongraph.py search "database"
+PYTHONPATH=v1_impl python v1_impl/decisiongraph.py report --out report.md
+PYTHONPATH=v1_impl python -m unittest discover -s v1_impl -t v1_impl -p "test_*.py" -v
 ```

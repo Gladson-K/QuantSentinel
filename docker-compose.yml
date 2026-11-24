@@ -1,0 +1,4 @@
+services:
+  test:
+    build: .
+    command: python -m unittest discover -s /app -t /app -p "test_*.py" -v
