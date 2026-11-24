@@ -4,7 +4,7 @@ import tempfile
 import unittest
 
 from acl import filter_decisions, visible_documents
-from connectors import Document, JsonFixtureTransport, github_connector, slack_connector
+from connectors import Document, github_connector, slack_connector
 from pipeline import Pipeline
 from sync import SyncState, sync_once
 from threads import ThreadAssembler

@@ -41,7 +41,7 @@ class SyncState:
         return int(row[0]) if row else 0
 
     def set_cursor(self, source, cursor):
-        ts = datetime.datetime.now(datetime.timezone.utc).isoformat()
+        ts = datetime.datetime.now(datetime.UTC).isoformat()
         connection = self._connect()
         connection.execute(
             "INSERT OR REPLACE INTO sync_state(source,cursor,last_sync) VALUES(?,?,?)", (source, cursor, ts)
@@ -50,7 +50,7 @@ class SyncState:
         connection.close()
 
     def mark_dead(self, source, item_id, reason):
-        ts = datetime.datetime.now(datetime.timezone.utc).isoformat()
+        ts = datetime.datetime.now(datetime.UTC).isoformat()
         connection = self._connect()
         connection.execute(
             "INSERT INTO dead_letters(source,item_id,reason,ts) VALUES(?,?,?,?)", (source, str(item_id), str(reason), ts)
@@ -107,10 +107,10 @@ class SyncState:
             "SELECT url,source,thread_id,span FROM evidence WHERE decision_id=? ORDER BY id", (decision_id,)
         ).fetchall()
         connection.close()
-        return [dict(url=row[0], source=row[1], thread_id=row[2], span=row[3]) for row in rows]
+        return [{"url": row[0], "source": row[1], "thread_id": row[2], "span": row[3]} for row in rows]
 
     def record_merge(self, merge_id, canonical, duplicate, reason):
-        ts = datetime.datetime.now(datetime.timezone.utc).isoformat()
+        ts = datetime.datetime.now(datetime.UTC).isoformat()
         connection = self._connect()
         connection.execute(
             "INSERT OR REPLACE INTO merges VALUES(?,?,?,?,?,0)", (merge_id, canonical, duplicate, reason, ts)
@@ -142,7 +142,7 @@ def sync_once(connector, state, handler=None, backfill=False):
             if handler:
                 handler(document)
             processed.append(document)
-        except Exception as exc:
+        except (OSError, ValueError, KeyError, TypeError, RuntimeError) as exc:
             state.mark_dead(connector.name, item.get("id", "?"), exc)
     state.set_cursor(connector.name, next_cursor)
     return processed
