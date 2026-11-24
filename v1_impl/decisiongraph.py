@@ -24,12 +24,13 @@ WEAK = [
     r"\bwe (will|won'?t|will not|shall)\b",
     r"\b(no longer|from now on|effective immediately)\b",
 ]
-NEG = re.compile(r"\b(not|n't|never|no longer|stop|drop|deprecate|remove|avoid|without|won't)\b", re.I)
-OPT = re.compile(r"\b(use|adopt|go with|going with|switch to|migrate to|choose|using)\s+([A-Za-z0-9_.\-]+)", re.I)
-STOP = set(
-    "the a an to of and or in on for we is are be will with that this it as at by from our us let lets "
-    "decided agreed decision going use using not no".split()
-)
+NEG = re.compile(r"\b(not|n't|never|no longer|stop|drop|deprecate|remove|avoid|without|won't)\b", re.IGNORECASE)
+OPT = re.compile(r"\b(use|adopt|go with|going with|switch to|migrate to|choose|using)\s+([A-Za-z0-9_.\-]+)", re.IGNORECASE)
+STOP = {
+    "the", "a", "an", "to", "of", "and", "or", "in", "on", "for", "we", "is", "are", "be", "will",
+    "with", "that", "this", "it", "as", "at", "by", "from", "our", "us", "let", "lets", "decided",
+    "agreed", "decision", "going", "use", "using", "not", "no",
+}
 
 
 def set_db(path):
@@ -74,9 +75,9 @@ def extract(text):
         sentence = sentence.strip(" -*\t")
         if len(sentence) < 12:
             continue
-        if any(re.search(pattern, sentence, re.I) for pattern in STRONG):
+        if any(re.search(pattern, sentence, re.IGNORECASE) for pattern in STRONG):
             found.append((sentence, 0.9))
-        elif any(re.search(pattern, sentence, re.I) for pattern in WEAK):
+        elif any(re.search(pattern, sentence, re.IGNORECASE) for pattern in WEAK):
             found.append((sentence, 0.5))
     return found
 
@@ -176,13 +177,13 @@ def conflicts():
             if kind:
                 relation = "supersedes?" if newer[2] > older[2] else "same-day conflict"
                 found.append(
-                    dict(
-                        kind=kind,
-                        sim=round(similarity, 2),
-                        relation=relation,
-                        older=older,
-                        newer=newer,
-                    )
+                    {
+                        "kind": kind,
+                        "sim": round(similarity, 2),
+                        "relation": relation,
+                        "older": older,
+                        "newer": newer,
+                    }
                 )
     return found
 
